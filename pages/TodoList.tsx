@@ -11,17 +11,27 @@ const GET_TODOS = gql`
   }
 `;
 
-const TodoList = () => {
+export const TodoList = () => {
+  // TODO: 型補完を利かせたい
   const { data } = useSuspenseQuery_experimental(GET_TODOS);
   return (
     <>
-      {data.map((todo) => {
-        return <p>{todo.id}</p>;
-      })}
+      {data.todos.map(
+        (todo: { id: string; title: string; content: string }) => {
+          return (
+            <div key={todo.id}>
+              <p>{todo.id}</p>
+              <p>{todo.title}</p>
+              <p>{todo.content}</p>
+            </div>
+          );
+        }
+      )}
     </>
   );
 };
-
+/*
 const MemoizedTodoList = React.memo(TodoList);
 
 export { MemoizedTodoList as TodoList };
+ */

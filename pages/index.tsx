@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { TodoList } from "../app/TodoList";
+import { TodoList } from "./TodoList";
 
 const Home: NextPage = () => {
   return (

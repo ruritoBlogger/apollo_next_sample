@@ -11,7 +11,7 @@ const GET_TODOS = gql`
   }
 `;
 
-export const TodoList = () => {
+const TodoList = () => {
   // TODO: 型補完を利かせたい
   const { data } = useSuspenseQuery_experimental(GET_TODOS);
   return (
@@ -30,8 +30,7 @@ export const TodoList = () => {
     </>
   );
 };
-/*
+
 const MemoizedTodoList = React.memo(TodoList);
 
 export { MemoizedTodoList as TodoList };
- */

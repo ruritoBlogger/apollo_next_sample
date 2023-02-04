@@ -15,10 +15,10 @@
   resolved "https://registry.yarnpkg.com/@apollo/cache-control-types/-/cache-control-types-1.0.2.tgz#f42ed3563acc7f1f50617d65d208483977adc68e"
   integrity sha512-Por80co1eUm4ATsvjCOoS/tIR8PHxqVjsA6z76I6Vw0rFn4cgyVElQcmQDIZiYsy41k8e5xkrMRECkM2WR8pNw==
 
-"@apollo/client@^3.7.1":
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.7.5.tgz#d2ab6e284822296c9102ff57ab3a8dcbaa818052"
-  integrity sha512-HEAhX2n2Y8Y2BwRr0UdteT94OTM7pn64K5/rTk/oLIdg/h7R2d83LdsCGDxSH5sBiqDqlv9vou4xdyTxxRWj/g==
+"@apollo/client@3.8.0-alpha.5":
+  version "3.8.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.8.0-alpha.5.tgz#c642d00df27e7be11c27211a6f779a4da13c1a94"
+  integrity sha512-39UGB9CXos58rnpPhk0jcKOtdAKT1yl4DjhC5e2jXf9g/hwnWvulylJD91aOYgT4Q5guNJy0CTPTCHV/bwI3AA==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/context" "^0.7.0"

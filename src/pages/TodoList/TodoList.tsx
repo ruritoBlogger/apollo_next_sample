@@ -20,9 +20,9 @@ const TodoList = () => {
         (todo: { id: string; title: string; content: string }) => {
           return (
             <div key={todo.id}>
-              <p>{todo.id}</p>
-              <p>{todo.title}</p>
-              <p>{todo.content}</p>
+              <p>id: {todo.id}</p>
+              <p>title: {todo.title}</p>
+              <p>content: {todo.content}</p>
             </div>
           );
         }

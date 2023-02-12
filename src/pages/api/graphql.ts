@@ -3,6 +3,7 @@ import { startServerAndCreateNextHandler } from "@as-integrations/next";
 
 import { Resolvers } from "../../../graphql/dist/generated-server";
 import gql from "graphql-tag";
+import * as query from "../../resolvers/query";
 
 // TODO: schemaから取得したい
 const typeDefs = gql`
@@ -17,11 +18,8 @@ const typeDefs = gql`
   }
 `;
 
-// TODO: DBから取得するように変更する
 const resolvers: Resolvers = {
-  Query: {
-    todos: () => [{ id: "TODO_1", title: "title", content: "content" }],
-  },
+  Query: query,
 };
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });

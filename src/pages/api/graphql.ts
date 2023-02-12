@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 
-import { Resolvers } from "../../graphql/dist/generated-server";
+import { Resolvers } from "../../../graphql/dist/generated-server";
 import gql from "graphql-tag";
 
 // TODO: schemaから取得したい

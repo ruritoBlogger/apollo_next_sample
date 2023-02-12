@@ -1,13 +1,26 @@
 version: '3'
 
 services:
-  # MySQL
-  db:
+  app:
+    container_name: app
+    build: .
+    tty: true
+    command: yarn run-p dev prisma:studio
+    ports:
+      - '3000:3000'
+      - '5555:5555'
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+    env_file:
+      - .env
+  mysql:
     image: mysql:5.7
-    container_name: db
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: development
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: develop
       MYSQL_USER: docker
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'

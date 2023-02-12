@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
-    "codegen:server": "graphql-codegen --config graphql/codegen-server.yaml"
+    "codegen:server": "graphql-codegen --config graphql/codegen-server.yaml",
+    "prisma:migrate": "prisma migrate dev --name init"
   },
   "dependencies": {
     "@apollo/client": "3.8.0-alpha.5",

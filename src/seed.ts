@@ -8,6 +8,24 @@ async function main() {
       id: 1,
       title: "電球を交換する",
       content: "キッチンの電球が切れているので交換すること。",
+      comments: {
+        connectOrCreate: [
+          {
+            where: { id: 1 },
+            create: {
+              id: 1,
+              content: "洗面所の電球も切れてるじゃん",
+            },
+          },
+          {
+            where: { id: 3 },
+            create: {
+              id: 3,
+              content: "LEDの電球が欲しいっす",
+            },
+          },
+        ],
+      },
     },
   });
 

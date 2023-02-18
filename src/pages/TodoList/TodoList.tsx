@@ -1,13 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { gql, useSuspenseQuery_experimental } from "@apollo/client";
-import {
-  Collapse,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
 import { TodoItem } from "./TodoItem";
+import { List } from "@mui/material";
 
 const GET_TODOS = gql`
   query {

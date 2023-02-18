@@ -13,6 +13,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Comment = {
+  __typename?: 'Comment';
+  content: Scalars['String'];
+  id: Scalars['ID'];
+};
+
 export type Query = {
   __typename?: 'Query';
   todos: Array<Todo>;
@@ -20,6 +26,7 @@ export type Query = {
 
 export type Todo = {
   __typename?: 'Todo';
+  comments: Array<Comment>;
   content: Scalars['String'];
   id: Scalars['ID'];
   title: Scalars['String'];
@@ -96,6 +103,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Comment: ResolverTypeWrapper<Comment>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -105,10 +113,17 @@ export type ResolversTypes = ResolversObject<{
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
+  Comment: Comment;
   ID: Scalars['ID'];
   Query: {};
   String: Scalars['String'];
   Todo: Todo;
+}>;
+
+export type CommentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Comment'] = ResolversParentTypes['Comment']> = ResolversObject<{
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
@@ -116,6 +131,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 }>;
 
 export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = ResolversObject<{
+  comments?: Resolver<Array<ResolversTypes['Comment']>, ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -123,6 +139,7 @@ export type TodoResolvers<ContextType = any, ParentType extends ResolversParentT
 }>;
 
 export type Resolvers<ContextType = any> = ResolversObject<{
+  Comment?: CommentResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Todo?: TodoResolvers<ContextType>;
 }>;

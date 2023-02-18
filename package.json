@@ -10,7 +10,8 @@
     "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "codegen:server": "graphql-codegen --config graphql/codegen-server.yaml",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} src/seed.ts"
   },
   "dependencies": {
     "@apollo/client": "3.8.0-alpha.5",

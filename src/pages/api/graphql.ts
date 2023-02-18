@@ -15,6 +15,12 @@ const typeDefs = gql`
     id: ID!
     title: String!
     content: String!
+    comments: [Comment!]!
+  }
+
+  type Comment {
+    id: ID!
+    content: String!
   }
 `;
 

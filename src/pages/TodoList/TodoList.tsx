@@ -31,8 +31,15 @@ const TodoList = () => {
     <>
       <List>
         {data.todos.map(
-          (todo: { id: string; title: string; content: string }) => (
-            <TodoItem todo={todo} />
+          (todo: {
+            id: string;
+            title: string;
+            content: string;
+            comments: { id: number; content: string }[];
+          }) => (
+            <React.Fragment key={todo.id}>
+              <TodoItem todo={todo} />
+            </React.Fragment>
           )
         )}
       </List>

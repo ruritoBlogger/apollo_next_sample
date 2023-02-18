@@ -1,5 +1,13 @@
-import { ListItem, ListItemText, Typography } from "@mui/material";
-import React from "react";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import {
+  Collapse,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import React, { useCallback, useState } from "react";
 
 // TODO: スキーマから型情報を生成する
 interface Comment {
@@ -19,9 +27,19 @@ interface TodoProps {
 }
 
 const TodoItem = ({ todo }: TodoProps): JSX.Element => {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleClick = useCallback(() => {
+    setOpen((open) => !open);
+  }, []);
+
   return (
     <>
-      <ListItem key={todo.id} alignItems={"flex-start"}>
+      <ListItemButton
+        key={todo.id}
+        alignItems={"flex-start"}
+        onClick={handleClick}
+      >
         <ListItemText
           primary={todo.title}
           secondary={
@@ -32,7 +50,17 @@ const TodoItem = ({ todo }: TodoProps): JSX.Element => {
             </>
           }
         />
-      </ListItem>
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          {todo.comments.map((comment) => (
+            <ListItem sx={{ pl: 4 }} key={comment.id}>
+              <ListItemText primary={comment.content} />
+            </ListItem>
+          ))}
+        </List>
+      </Collapse>
     </>
   );
 };

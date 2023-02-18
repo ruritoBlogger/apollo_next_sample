@@ -1,5 +1,8 @@
 import React from "react";
-import { gql, useSuspenseQuery_experimental } from "@apollo/client";
+import {
+  gql,
+  useSuspenseQuery_experimental as useSuspenseQuery,
+} from "@apollo/client";
 import { TodoItem } from "./TodoItem";
 import { List } from "@mui/material";
 
@@ -19,7 +22,7 @@ const GET_TODOS = gql`
 
 const TodoList = () => {
   // TODO: 型補完を利かせたい
-  const { data } = useSuspenseQuery_experimental(GET_TODOS);
+  const { data } = useSuspenseQuery(GET_TODOS);
 
   return (
     <>

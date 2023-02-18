@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { gql, useSuspenseQuery_experimental } from "@apollo/client";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Collapse,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import { TodoItem } from "./TodoItem";
 
 const GET_TODOS = gql`
   query {
@@ -8,6 +15,10 @@ const GET_TODOS = gql`
       id
       title
       content
+      comments {
+        id
+        content
+      }
     }
   }
 `;
@@ -15,26 +26,14 @@ const GET_TODOS = gql`
 const TodoList = () => {
   // TODO: 型補完を利かせたい
   const { data } = useSuspenseQuery_experimental(GET_TODOS);
+
   return (
     <>
       <List>
         {data.todos.map(
-          (todo: { id: string; title: string; content: string }) => {
-            return (
-              <ListItem key={todo.id} alignItems={"flex-start"}>
-                <ListItemText
-                  primary={todo.title}
-                  secondary={
-                    <>
-                      <Typography component={"span"} variant={"body2"}>
-                        {todo.content}
-                      </Typography>
-                    </>
-                  }
-                />
-              </ListItem>
-            );
-          }
+          (todo: { id: string; title: string; content: string }) => (
+            <TodoItem todo={todo} />
+          )
         )}
       </List>
     </>

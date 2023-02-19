@@ -7,6 +7,7 @@ export const todos: QueryResolvers["todos"] = async (
   context,
   info
 ) => {
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
   return await prisma.todo.findMany({
     include: {
       comments: true,

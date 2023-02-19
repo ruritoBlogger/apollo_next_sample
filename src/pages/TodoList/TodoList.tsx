@@ -1,28 +1,46 @@
-import React from "react";
+import React, { Suspense, useCallback } from "react";
 import {
   gql,
   useSuspenseQuery_experimental as useSuspenseQuery,
 } from "@apollo/client";
 import { TodoItem } from "./TodoItem";
-import { List } from "@mui/material";
+import { Button, List } from "@mui/material";
 import { GetTodosDocument } from "../../../graphql/dist/client/graphql";
+import { LoadingTodoList } from "./LoadingTodoList";
 
 const TodoList = () => {
-  const { data } = useSuspenseQuery(GetTodosDocument);
+  const { data, refetch } = useSuspenseQuery(GetTodosDocument);
+
+  const handleClick = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <>
-      <List>
-        {data.todos.map((todo) => (
-          <React.Fragment key={todo.id}>
-            <TodoItem todo={todo} />
-          </React.Fragment>
-        ))}
-      </List>
+      <Suspense fallback={<LoadingTodoList />}>
+        <Button onClick={handleClick}>再読み込み</Button>
+        <List>
+          {data.todos.map((todo) => (
+            <React.Fragment key={todo.id}>
+              <TodoItem todo={todo} />
+            </React.Fragment>
+          ))}
+        </List>
+      </Suspense>
     </>
   );
 };
 
-const MemoizedTodoList = React.memo(TodoList);
+const TodoListWrapper = () => {
+  return (
+    <>
+      <Suspense fallback={<LoadingTodoList />}>
+        <TodoList />
+      </Suspense>
+    </>
+  );
+};
 
-export { MemoizedTodoList as TodoList };
+const MemoizedTodoListWrapper = React.memo(TodoListWrapper);
+
+export { MemoizedTodoListWrapper as TodoList };

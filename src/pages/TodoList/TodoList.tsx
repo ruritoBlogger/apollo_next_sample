@@ -5,40 +5,19 @@ import {
 } from "@apollo/client";
 import { TodoItem } from "./TodoItem";
 import { List } from "@mui/material";
-
-const GET_TODOS = gql`
-  query {
-    todos {
-      id
-      title
-      content
-      comments {
-        id
-        content
-      }
-    }
-  }
-`;
+import { GetTodosDocument } from "../../../graphql/dist/client/graphql";
 
 const TodoList = () => {
-  // TODO: 型補完を利かせたい
-  const { data } = useSuspenseQuery(GET_TODOS);
+  const { data } = useSuspenseQuery(GetTodosDocument);
 
   return (
     <>
       <List>
-        {data.todos.map(
-          (todo: {
-            id: string;
-            title: string;
-            content: string;
-            comments: { id: number; content: string }[];
-          }) => (
-            <React.Fragment key={todo.id}>
-              <TodoItem todo={todo} />
-            </React.Fragment>
-          )
-        )}
+        {data.todos.map((todo) => (
+          <React.Fragment key={todo.id}>
+            <TodoItem todo={todo} />
+          </React.Fragment>
+        ))}
       </List>
     </>
   );

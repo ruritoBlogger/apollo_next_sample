@@ -8,19 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useCallback, useState } from "react";
-
-// TODO: スキーマから型情報を生成する
-interface Comment {
-  id: number;
-  content: string;
-}
-
-interface Todo {
-  id: number;
-  title: string;
-  content: string;
-  comments: Comment[];
-}
+import { Todo } from "../../../graphql/dist/client/graphql";
 
 interface TodoProps {
   todo: Todo;

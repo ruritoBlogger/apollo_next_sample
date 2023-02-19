@@ -1,0 +1,11 @@
+  query getTodos {
+    todos {
+      id
+      title
+      content
+      comments {
+        id
+        content
+      }
+    }
+  }

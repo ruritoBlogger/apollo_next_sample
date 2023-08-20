@@ -1,6 +1,8 @@
-FROM node
+FROM node:latest
 RUN mkdir -p /app
 WORKDIR /app
 
-ADD . ./
+COPY package.json yarn.lock ./
 RUN yarn install
+
+COPY . ./

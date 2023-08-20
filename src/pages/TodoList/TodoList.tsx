@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback } from "react";
 import {
   gql,
-  useSuspenseQuery_experimental as useSuspenseQuery,
+  useSuspenseQuery
 } from "@apollo/client";
 import { TodoItem } from "./TodoItem";
 import { Button, List } from "@mui/material";

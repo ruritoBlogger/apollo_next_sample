@@ -12,8 +12,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const cache = new SuspenseCache();
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -21,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>apollo/clientのサンプル</title>
       </Head>
       <div>
-        <ApolloProvider client={client} suspenseCache={cache}>
+        <ApolloProvider client={client}>
           <Component {...pageProps} />
         </ApolloProvider>
       </div>
